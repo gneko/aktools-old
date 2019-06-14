@@ -265,7 +265,7 @@
     <hr />
     <div class="row col-12 page-footer">
         <div class="col-12 text-center cn">
-            <p>最近更新：2019/06/01，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
+            <p>最近更新：2019/06/14，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
             <p>
                 数据来源：
                 <a href="https://ak.hypergryph.com">『明日方舟』</a>
@@ -326,34 +326,38 @@
                 $("#" + opt + "-level").val(maxLevel[star - 1][ev]);
                 //console.log(maxLevel[star - 1][ev])
             });
+            function toIntOrNull(val) {
+                let match = ("0" + val).match(/^\d*$/gm);
+                if (match && match.length > 0) { return parseInt(match); }
+                return null;
+            }
             $(document).on('click', '#btn-calculate', function () {
                 $("#error-info").hide();
                 $("#tbody-result").html("");
-                let star = parseInt($("#star").val());
-                let cev = parseInt($("#current-evolve").val());
-                let cl = parseInt($("#current-level").val());
-                let ce = parseInt($("#current-exp").val());
-                let te = parseInt($("#target-evolve").val());
-                let tl = parseInt($("#target-level").val());
-                let ga = parseInt($("#gold-asset").val());
-                let bb = parseInt($("#book-basic").val());
-                let bp = parseInt($("#book-primary").val());
-                let bm = parseInt($("#book-middle").val());
-                let ba = parseInt($("#book-advanced").val());
+                let star = toIntOrNull($("#star").val());
+                let cev = toIntOrNull($("#current-evolve").val());
+                let cl = toIntOrNull($("#current-level").val());
+                let ce = toIntOrNull($("#current-exp").val());
+                let te = toIntOrNull($("#target-evolve").val());
+                let tl = toIntOrNull($("#target-level").val());
+                let ga = toIntOrNull($("#gold-asset").val());
+                let bb = toIntOrNull($("#book-basic").val());
+                let bp = toIntOrNull($("#book-primary").val());
+                let bm = toIntOrNull($("#book-middle").val());
+                let ba = toIntOrNull($("#book-advanced").val());
                 let errorInfos = {
                     "cn": ["等级必须为1~90的数字。", "已有金币/经验书数量只能为数字。", "目标等级不能低于或等于当前等级。", "等级超出精英化阶段范围。", "当前经验必须为正整数"],
                     "en": ["The level must be a number from 1 to 90.", "The input for gold coins/experience books available can only be numbers.", "The target level cannot be lower than or equal to the current level.", "The level is beyond the scope of the elite stage.", "Current experience must be a positive integer", "The current experience is outside the possible range, please check the input."]
                 }[lang];
-                if (isNaN(cl) || isNaN(tl)) {
+                if ((cl==null) || (tl==null)) {
                     $("#error-info").html(errorInfos[0]);
                     $("#error-info").show();
                     return;
                 }
-                if (isNaN(ga) || isNaN(bb) || isNaN(bp) || isNaN(bm) || isNaN(ba)) {
+                if ((ga==null) || (bb==null) || (bp==null) || (bm==null) || (ba==null)) {
                     $("#error-info").html(errorInfos[1]);
                     $("#error-info").show();
                     return;
-
                 }
                 if (te < cev || (te === cev && tl <= cl)) {
                     $("#error-info").html(errorInfos[2]);
@@ -365,7 +369,7 @@
                     $("#error-info").show();
                     return;
                 }
-                if (isNaN(ce) || ce < 0) {
+                if ((ce==null) || ce < 0) {
                     $("#error-info").html(errorInfos[4]);
                     $("#error-info").show();
                     return;
@@ -412,7 +416,7 @@
                     [{ 'cn': '精英化金币', 'en': 'Coins for Elite' }[lang], ea],
                 ], function (_, v) {
                     $("#tbody-result").append('<tr><th scope="row" class="text-right">' + v[0] + '</th><td>' + v[1] + '</td></tr>');
-                    });
+                });
                 setLocalStorage("lv-book", [bb, bp, bm, ba, ga].join("+"));
             });
         });
