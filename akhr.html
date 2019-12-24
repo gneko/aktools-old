@@ -47,8 +47,8 @@
                     <a class="nav-link en" href="akhrchars.html?lang=en">Operators Table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled cn" href="#">施工中…</a>
-                    <a class="nav-link disabled en" href="#">WIP</a>
+                    <a class="nav-link cn" href="https://aktoolscn.graueneko.xyz/">[新版工具箱]</a>
+                    <a class="nav-link en" href="https://aktools.graueneko.xyz/">New Version</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -155,6 +155,9 @@
             </div>
         </div>
         <div class="col-12 alert alert-success mt-1 cn" role="alert">
+            19/12/24 公开招募干员池已随游戏同步更新。
+        </div>
+        <div class="col-12 alert alert-success mt-1 cn" role="alert">
             19/06/13 明日方舟工具箱(新版) 上线：更多功能，更快加载，<a href="https://aktools.graueneko.xyz">欢迎点击此处使用。</a>(数据保持同步更新)
         </div>
     </div>
@@ -162,19 +165,11 @@
     <hr />
     <div class="row col-12 page-footer">
         <div class="col-12 text-center cn">
-            <p>最近更新：2019/06/13，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
-            <p>
-                数据来源：
-                <a href="http://wiki.joyme.com/arknights/%E5%B9%B2%E5%91%98%E6%95%B0%E6%8D%AE%E8%A1%A8">明日方舟Wiki</a>
-            </p>
+            <p>最近更新：2019/12/24，<a href="https://bbs.nga.cn/read.php?tid=16971344">联系作者</a></p>
             <p>Powered by 一只灰猫。</p>
         </div>
         <div class="col-12 text-center en">
-            <p>Last update: 06/01/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
-            <p>
-                Data source:
-                <a href="http://wiki.joyme.com/arknights/%E5%B9%B2%E5%91%98%E6%95%B0%E6%8D%AE%E8%A1%A8">Arknights Wiki (CN)</a>
-            </p>
+            <p>Last update: 12/24/2019, <a href="https://github.com/graueneko/graueneko.github.io/issues">Contact</a></p>
             <p>Powered by GraueNeko, Aceship</p>
         </div>
     </div>
@@ -197,16 +192,12 @@
                     "en": "Position", "entags": ["Ranged", "Melee"]
                 },
                 {
-                    "cn": "性别", "cntags": ["男性干员", "女性干员"],
-                    "en": "Gender", "entags": ["Male", "Female"]
-                },
-                {
                     "cn": "种类", "cntags": ["先锋干员", "狙击干员", "医疗干员", "术师干员", "近卫干员", "重装干员", "辅助干员", "特种干员"],
                     "en": "Class", "entags": ["Vanguard", "Sniper", "Medic", "Caster", "Guard", "Defender", "Support", "Specialist"]
                 },
                 {
-                    "cn": "词缀", "cntags": ["治疗", "支援", "输出", "群攻", "减速", "生存", "防护", "削弱", "位移", "控场", "爆发", "召唤", "快速复活", "费用回复"],
-                    "en": "Affix", "entags": ["Healing", "Support", "DPS", "Splash", "Slow", "Survival", "Protection", "Debuffer", "Displacement", "Crowd Control", "Burst", "Summoner", "Quick Resurrection", "Cost Recovery"]
+                    "cn": "词缀", "cntags": ["治疗", "支援", "输出", "群攻", "减速", "生存", "防护", "削弱", "位移", "控场", "爆发", "召唤", "快速复活", "费用回复", "支援机械"],
+                    "en": "Affix", "entags": ["Healing", "Support", "DPS", "Splash", "Slow", "Survival", "Protection", "Debuffer", "Displacement", "Crowd Control", "Burst", "Summoner", "Quick Resurrection", "Cost Recovery", "Support Machine"]
                 }
             ];
             $.each(tags, (_, v) => {
@@ -232,7 +223,6 @@
                 $.each(data, function (_, char) {
                     if (char.hidden) return;
                     char.tags.push(char.type + "干员");
-                    char.tags.push(char.sex + "性干员");
                     let name = lang === 'cn' ? char.name : char["name-" + lang];
                     $.each(char.tags, function (_, tag) {
                         if (tag in tags_aval) {
